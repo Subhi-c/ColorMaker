@@ -2,23 +2,42 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
+        bool _isRandom = false;
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            count++;
+            if(_isRandom)
+                return;
+            var red = SliderRed.Value;
+            var blue = SliderBlue.Value;
+            var green = SliderGreen.Value;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            Color color = Color.FromRgb(red, blue, green);
+            SetColor(color);
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        void SetColor(Color color)
+        {
+            Grid.BackgroundColor = color;
+            RandomBtn.BackgroundColor = color;
+            copyBtn.Text = color.ToHex();
+        }
+
+        private void RandomBtn_Clicked(object sender, EventArgs e)
+        {
+            _isRandom = true;
+            var random = new Random();
+
+            Color color = Color.FromRgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
+            SliderRed.Value = color.Red;
+            SliderBlue.Value = color.Blue;
+            SliderGreen.Value = color.Green;
+            SetColor(color);
+            _isRandom = false;
         }
     }
 

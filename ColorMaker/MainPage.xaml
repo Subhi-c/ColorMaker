@@ -9,6 +9,52 @@
         <Color x:Key="Tertiary">#705c2e</Color>
     </ContentPage.Resources>
 
-    <Button  BackgroundColor="{StaticResource Primary}"/>
+    <Grid
+        x:Name="Grid"
+        BackgroundColor="Black">
+        <VerticalStackLayout
+            x:Name="Container"
+            HeightRequest="350"
+            WidthRequest="500"
+            Padding="20"
+            Background="White">
+            <Label 
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="Color Maker"/>
+            <Label 
+                Text="Red value:"/>
+            <Slider 
+                x:Name="SliderRed"
+                ThumbColor="{StaticResource Primary}"
+                MaximumTrackColor="{StaticResource Secondary}"
+                MinimumTrackColor="{StaticResource Tertiary}"
+                ValueChanged="Slider_ValueChanged"/>
+            <Label 
+     Text="Blue value:"/>
+            <Slider 
+     x:Name="SliderBlue"
+     ThumbColor="{StaticResource Primary}"
+     MaximumTrackColor="{StaticResource Secondary}"
+     MinimumTrackColor="{StaticResource Tertiary}"
+                 ValueChanged="Slider_ValueChanged"/>
+            <Label 
+     Text="Green value:"/>
+            <Slider 
+     x:Name="SliderGreen"
+     ThumbColor="{StaticResource Primary}"
+     MaximumTrackColor="{StaticResource Secondary}"
+     MinimumTrackColor="{StaticResource Tertiary}"
+                 ValueChanged="Slider_ValueChanged"/>
+       
+            <Button 
+                x:Name="RandomBtn"
+                BackgroundColor="{StaticResource Primary}"
+                Text="Generate Random Color"
+                Clicked="RandomBtn_Clicked"/>
+        </VerticalStackLayout>
+        
+    </Grid>
 
 </ContentPage>
